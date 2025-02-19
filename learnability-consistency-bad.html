@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poor Consistency Example - Social Profile</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        display: flex;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .app {
+        flex: 1;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .design-notes {
+        flex: 0 0 300px;
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .design-notes h3 {
+        color: #333;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      .design-notes ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .design-notes li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .design-notes li::before {
+        content: "•";
+        color: #dc3545;
+        position: absolute;
+        left: 0;
+      }
+
+      /* Inconsistent Profile Sections */
+      .profile-header {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(45deg, #ff6b6b, #4834d4);
+        color: white;
+      }
+
+      .profile-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      /* Different stat box styles */
+      .stat-box:nth-child(1) {
+        background: #ffe0e0;
+        padding: 15px;
+        text-align: left;
+        border-radius: 10px;
+      }
+
+      .stat-box:nth-child(2) {
+        background: #e0ffe0;
+        padding: 20px;
+        text-align: center;
+        border: 2px dashed #4834d4;
+      }
+
+      .stat-box:nth-child(3) {
+        background: #e0e0ff;
+        padding: 10px;
+        text-align: right;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Inconsistent post styles */
+      .post {
+        margin: 20px 0;
+        padding: 15px;
+      }
+
+      .post:nth-child(odd) {
+        background: #f8f8f8;
+        border-left: 5px solid #ff6b6b;
+      }
+
+      .post:nth-child(even) {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+      }
+
+      /* Different action button styles */
+      .action-btn {
+        margin: 5px;
+        cursor: pointer;
+      }
+
+      .post:nth-child(1) .action-btn {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+      }
+
+      .post:nth-child(2) .action-btn {
+        background: none;
+        color: #4834d4;
+        border: 1px solid #4834d4;
+        padding: 8px 15px;
+        text-decoration: underline;
+      }
+
+      .post:nth-child(3) .action-btn {
+        background: #4834d4;
+        color: white;
+        border: none;
+        padding: 3px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+
+      /* Different interaction styles */
+      .post:nth-child(1) .likes {
+        color: red;
+        font-weight: bold;
+      }
+
+      .post:nth-child(2) .likes {
+        color: green;
+        font-style: italic;
+      }
+
+      .post:nth-child(3) .likes {
+        color: blue;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          flex-direction: column;
+        }
+        .design-notes {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="app">
+        <div class="profile-header">
+          <h1>John Doe</h1>
+          <p>Digital Explorer</p>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-box">
+            <h3>Posts</h3>
+            <p>523</p>
+          </div>
+          <div class="stat-box">
+            <h3>Following</h3>
+            <p>1.2K</p>
+          </div>
+          <div class="stat-box">
+            <h3>Followers</h3>
+            <p>3.4K</p>
+          </div>
+        </div>
+
+        <div class="posts">
+          <div class="post">
+            <h3>My Latest Adventure</h3>
+            <p>Exploring the mountains today!</p>
+            <span class="likes">124 likes</span>
+            <button class="action-btn">Like</button>
+            <button class="action-btn">Share</button>
+          </div>
+
+          <div class="post">
+            <h3>Tech Review</h3>
+            <p>New gadget unboxing...</p>
+            <span class="likes">89 likes</span>
+            <button class="action-btn">♥</button>
+            <button class="action-btn">→</button>
+          </div>
+
+          <div class="post">
+            <h3>Food Journey</h3>
+            <p>Best pizza in town!</p>
+            <span class="likes">256 likes</span>
+            <button class="action-btn">+</button>
+            <button class="action-btn">↗</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-notes">
+        <h3>Poor Consistency Issues</h3>
+        <ul>
+          <li>Different stat box styles</li>
+          <li>Inconsistent post layouts</li>
+          <li>Varying button designs</li>
+          <li>Mixed interaction patterns</li>
+          <li>Different color schemes</li>
+          <li>Inconsistent spacing</li>
+          <li>Varying typography</li>
+          <li>Mixed visual hierarchy</li>
+          <li>Different feedback styles</li>
+          <li>Inconsistent iconography</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

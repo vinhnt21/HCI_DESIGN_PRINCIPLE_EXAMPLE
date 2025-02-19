@@ -3,60 +3,125 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Learnability</h1>
-    <ol>
-      <li>
-        <a href="learnability_simplicity_bad.html"
-          >learnability_simplicity_bad</a
-        >
-      </li>
-      <li>
-        <a href="learnability_simplicity_good.html"
-          >learnability_simplicity_good</a
-        >
-      </li>
-    </ol>
-    <h1>Flexibility</h1>
-    <ol>
-      <li></li>
-    </ol>
-    <h1>Robustness</h1>
-    <ol>
-      <li></li>
-    </ol>
+    <title>HCI Design Principles</title>
     <style>
-      * {
+      body {
         margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+        padding: 40px;
+        min-height: 100vh;
+        font-family: "Inter", system-ui, sans-serif;
+        background: linear-gradient(45deg, #4158d0, #c850c0, #ffcc70);
+        color: white;
       }
 
-      body {
-        font-family: "Segoe UI", sans-serif;
-        line-height: 1.6;
-        background-color: blanchedalmond;
-        padding: 20px;
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
 
       h1 {
-        margin-bottom: 20px;
+        margin: 0 0 20px 0;
+        font-size: 28px;
+        font-weight: 600;
       }
 
       ol {
-        list-style-type: decimal;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
       }
 
       li {
-        margin-bottom: 10px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
       a {
+        color: white;
         text-decoration: none;
-        color: cadetblue;
+        padding: 12px 20px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        flex: 1;
+        min-width: 140px;
+      }
+
+      a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 20px;
+        }
+
+        ol {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section">
+        <h1>Learnability</h1>
+        <ol>
+          <li>
+            <a href="learnability-consistency-bad.html">Consistency (Bad)</a>
+            <a href="learnability-consistency-good.html">Consistency (Good)</a>
+          </li>
+          <li>
+            <a href="learnability-familiarity.html">Familiarity</a>
+          </li>
+          <li>
+            <a href="learnability-generalisability.html">Generalisability</a>
+          </li>
+          <li>
+            <a href="learnability-predictability.html">Predictability</a>
+          </li>
+          <li>
+            <a href="learnability-simplicity-bad.html">Simplicity (Bad)</a>
+            <a href="learnability-simplicity-good.html">Simplicity (Good)</a>
+          </li>
+          <li>
+            <a href="learnability-synthesizability-bad.html"
+              >Synthesizability (Bad)</a
+            >
+            <a href="learnability-synthesizability.html">Synthesizability</a>
+          </li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h1>Flexibility</h1>
+        <ol>
+          <li>Coming soon...</li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h1>Robustness</h1>
+        <ol>
+          <li>Coming soon...</li>
+        </ol>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Consistency Example - Social Profile</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        display: flex;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .app {
+        flex: 1;
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .design-notes {
+        flex: 0 0 300px;
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .design-notes h3 {
+        color: #333;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      .design-notes .principle {
+        color: #4a5568;
+        font-weight: 600;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+      .design-notes ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .design-notes li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        color: #4a5568;
+      }
+
+      .design-notes li::before {
+        content: "•";
+        color: #38a169;
+        position: absolute;
+        left: 0;
+      }
+
+      /* Consistent Profile Design */
+      .profile-header {
+        text-align: center;
+        padding: 30px 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .profile-name {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .profile-bio {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9em;
+      }
+
+      .profile-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .stat-box {
+        background: #f7fafc;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.2s ease;
+      }
+
+      .stat-box:hover {
+        transform: translateY(-2px);
+      }
+
+      .stat-label {
+        color: #4a5568;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+      }
+
+      .stat-value {
+        color: #2d3748;
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .post {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.2s ease;
+      }
+
+      .post:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .post-header {
+        margin-bottom: 12px;
+      }
+
+      .post-title {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 5px;
+      }
+
+      .post-content {
+        color: #4a5568;
+        margin-bottom: 15px;
+      }
+
+      .post-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .likes {
+        color: #4a5568;
+        font-size: 0.9em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .likes-icon {
+        color: #e53e3e;
+      }
+
+      .action-btn {
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .primary-btn {
+        background: #667eea;
+        color: white;
+        border: none;
+      }
+
+      .primary-btn:hover {
+        background: #5a67d8;
+      }
+
+      .secondary-btn {
+        background: #f7fafc;
+        color: #4a5568;
+        border: 1px solid #e2e8f0;
+      }
+
+      .secondary-btn:hover {
+        background: #edf2f7;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          flex-direction: column;
+        }
+        .design-notes {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="app">
+        <div class="profile-header">
+          <h1 class="profile-name">John Doe</h1>
+          <p class="profile-bio">Digital Explorer | Photography | Tech</p>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-box">
+            <div class="stat-label">Posts</div>
+            <div class="stat-value">523</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Following</div>
+            <div class="stat-value">1.2K</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Followers</div>
+            <div class="stat-value">3.4K</div>
+          </div>
+        </div>
+
+        <div class="posts">
+          <div class="post">
+            <div class="post-header">
+              <h3 class="post-title">My Latest Adventure</h3>
+              <p class="post-content">
+                Exploring the mountains today! The view from the summit was
+                absolutely breathtaking.
+              </p>
+            </div>
+            <div class="post-actions">
+              <span class="likes">
+                <span class="likes-icon">♥</span>
+                124 likes
+              </span>
+              <button class="action-btn primary-btn">
+                <span>♥</span>
+                Like
+              </button>
+              <button class="action-btn secondary-btn">
+                <span>↗</span>
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="post">
+            <div class="post-header">
+              <h3 class="post-title">Tech Review</h3>
+              <p class="post-content">
+                Just got my hands on the latest gadget. Here's my first
+                impression!
+              </p>
+            </div>
+            <div class="post-actions">
+              <span class="likes">
+                <span class="likes-icon">♥</span>
+                89 likes
+              </span>
+              <button class="action-btn primary-btn">
+                <span>♥</span>
+                Like
+              </button>
+              <button class="action-btn secondary-btn">
+                <span>↗</span>
+                Share
+              </button>
+            </div>
+          </div>
+
+          <div class="post">
+            <div class="post-header">
+              <h3 class="post-title">Food Journey</h3>
+              <p class="post-content">
+                Found this amazing pizzeria downtown. Best margherita in the
+                city!
+              </p>
+            </div>
+            <div class="post-actions">
+              <span class="likes">
+                <span class="likes-icon">♥</span>
+                256 likes
+              </span>
+              <button class="action-btn primary-btn">
+                <span>♥</span>
+                Like
+              </button>
+              <button class="action-btn secondary-btn">
+                <span>↗</span>
+                Share
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-notes">
+        <h3>Good Consistency Principles</h3>
+
+        <div class="principle">Visual Consistency:</div>
+        <ul>
+          <li>Uniform color scheme</li>
+          <li>Consistent spacing</li>
+          <li>Standard typography</li>
+          <li>Regular visual hierarchy</li>
+        </ul>
+
+        <div class="principle">Layout Consistency:</div>
+        <ul>
+          <li>Standard post structure</li>
+          <li>Uniform stat boxes</li>
+          <li>Consistent padding</li>
+          <li>Regular margins</li>
+        </ul>
+
+        <div class="principle">Interactive Elements:</div>
+        <ul>
+          <li>Uniform button styles</li>
+          <li>Consistent hover effects</li>
+          <li>Standard feedback</li>
+          <li>Regular animations</li>
+        </ul>
+
+        <div class="principle">User Benefits:</div>
+        <ul>
+          <li>Predictable interface</li>
+          <li>Easy navigation</li>
+          <li>Clear expectations</li>
+          <li>Reduced cognitive load</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

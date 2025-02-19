@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .section {
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 8px;
+      }
+      .navbar {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .btn {
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        background: #7fe34d41;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 4px;
+        margin: 4px;
+      }
+      .note {
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+      }
+      .poor .note {
+        background: #fff3cd;
+      }
+      .good .note {
+        background: #e7f3ff;
+      }
+      h2 {
+        color: #333;
+        margin-top: 0;
+      }
+      .poor {
+        border: 1px solid #ffeeba;
+      }
+      .good {
+        border: 1px solid #b8daff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section poor">
+        <h2>Poor Familiarity Example</h2>
+        <div class="navbar">
+          <button class="btn"><span>🌀</span> Initiate</button>
+          <button class="btn"><span>🔮</span> Navigate</button>
+          <button class="btn"><span>⚡</span> Execute</button>
+        </div>
+
+        <div class="content">
+          <h3>Document Management System</h3>
+          <div>
+            <button class="btn">⚡ Materialize New Instance</button>
+            <button class="btn">🔮 Traverse Hierarchy</button>
+            <button class="btn">🌀 Discontinue Current Process</button>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>Why This is Poor:</strong>
+          <ul>
+            <li>Abstract symbols don't match common meanings</li>
+            <li>Overcomplicated technical terms</li>
+            <li>Non-standard navigation patterns</li>
+            <li>Confusing terminology for simple actions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section good">
+        <h2>Good Familiarity Example</h2>
+        <div class="navbar">
+          <button class="btn"><span>📝</span> New</button>
+          <button class="btn"><span>📂</span> Open</button>
+          <button class="btn"><span>💾</span> Save</button>
+        </div>
+
+        <div class="content">
+          <h3>Document Management</h3>
+          <div>
+            <button class="btn">📝 Create New File</button>
+            <button class="btn">📂 Browse Folders</button>
+            <button class="btn">❌ Close Document</button>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>Why This is Good:</strong>
+          <ul>
+            <li>Recognizable icons matching functions</li>
+            <li>Common, well-known terms</li>
+            <li>Standard layout patterns</li>
+            <li>Clear, simple language</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          alert("Action triggered: " + btn.textContent.trim());
+        });
+      });
+    </script>
+  </body>
+</html>

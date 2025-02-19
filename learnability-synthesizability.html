@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      .comparison {
+        display: flex;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .example {
+        flex: 1;
+        padding: 20px;
+        border-radius: 8px;
+        background: #f8f9fa;
+      }
+      .note {
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+      }
+      .poor .note {
+        background: #ffe5e5;
+        border: 1px solid #ffcccc;
+      }
+      .good .note {
+        background: #e5ffe5;
+        border: 1px solid #ccffcc;
+      }
+      .product {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        border-radius: 4px;
+      }
+      .btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 5px;
+      }
+      .cart-summary {
+        margin-top: 20px;
+        padding: 10px;
+        background: #f0f0f0;
+        border-radius: 4px;
+      }
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 15px;
+        background: white;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="comparison">
+      <div class="example poor">
+        <h2>Poor Synthesisability</h2>
+        <div class="note">
+          <strong>Issues:</strong>
+          • No clear feedback after actions • Cart total updates without
+          indication • Changes aren't visually tracked
+        </div>
+
+        <div id="poorProducts">
+          <div class="product">
+            <span>Product A - $10</span>
+            <button class="btn" onclick="updatePoorCart(0, 10)">Add</button>
+          </div>
+          <div class="product">
+            <span>Product B - $20</span>
+            <button class="btn" onclick="updatePoorCart(1, 20)">Add</button>
+          </div>
+        </div>
+
+        <div class="cart-summary">Total: $<span id="poorTotal">0</span></div>
+      </div>
+
+      <div class="example good">
+        <h2>Good Synthesisability</h2>
+        <div class="note">
+          <strong>Benefits:</strong>
+          • Clear visual feedback • Animated total updates • History of changes
+          visible
+        </div>
+
+        <div id="goodProducts">
+          <div class="product">
+            <span>Product A - $10</span>
+            <button
+              class="btn"
+              style="background: #4caf50; color: white"
+              onclick="updateGoodCart(0, 10, 'Product A')"
+            >
+              Add
+            </button>
+          </div>
+          <div class="product">
+            <span>Product B - $20</span>
+            <button
+              class="btn"
+              style="background: #4caf50; color: white"
+              onclick="updateGoodCart(1, 20, 'Product B')"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          Total: $<span id="goodTotal">0</span>
+          <div id="cartHistory"></div>
+        </div>
+
+        <div id="notification" class="notification"></div>
+      </div>
+    </div>
+
+    <script>
+      let poorTotal = 0;
+      let goodTotal = 0;
+
+      function updatePoorCart(productId, price) {
+        poorTotal += price;
+        document.getElementById("poorTotal").textContent = poorTotal;
+      }
+
+      function updateGoodCart(productId, price, name) {
+        goodTotal += price;
+
+        // Animate total update
+        const totalElement = document.getElementById("goodTotal");
+        totalElement.style.transition = "color 0.3s";
+        totalElement.style.color = "#4CAF50";
+        totalElement.textContent = goodTotal;
+
+        setTimeout(() => {
+          totalElement.style.color = "black";
+        }, 300);
+
+        // Show notification
+        const notification = document.getElementById("notification");
+        notification.textContent = `Added ${name} to cart (+$${price})`;
+        notification.style.display = "block";
+        notification.style.backgroundColor = "#4CAF50";
+        notification.style.color = "white";
+
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 2000);
+
+        // Update history
+        const history = document.getElementById("cartHistory");
+        const entry = document.createElement("div");
+        entry.style.fontSize = "0.9em";
+        entry.style.color = "#666";
+        entry.style.marginTop = "5px";
+        entry.textContent = `+ ${name} ($${price})`;
+        history.appendChild(entry);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+      }
+
+      .example-container {
+        flex: 1;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .poor {
+        background-color: #fff5f5;
+      }
+
+      .good {
+        background-color: #f0fff4;
+      }
+
+      h2 {
+        color: #2d3748;
+        margin-bottom: 16px;
+      }
+
+      .note {
+        background-color: #edf2f7;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+
+      /* Poor Example Styles */
+      .unpredictable-menu {
+        position: relative;
+        width: 200px;
+      }
+
+      .menu-trigger {
+        padding: 10px;
+        background: #e2e8f0;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .menu-content {
+        display: none;
+        position: absolute;
+        background: white;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-content button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+
+      /* Good Example Styles */
+      .predictable-menu {
+        width: 200px;
+      }
+
+      .predictable-menu button {
+        padding: 10px;
+        background: #e2e8f0;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.2s;
+      }
+
+      .predictable-menu button:hover {
+        background-color: #cbd5e0;
+      }
+
+      .predictable-menu button::after {
+        content: "▼";
+        position: absolute;
+        right: 10px;
+        transition: transform 0.2s;
+      }
+
+      .predictable-menu button.active::after {
+        transform: rotate(180deg);
+      }
+
+      .predictable-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .predictable-content.active {
+        max-height: 200px;
+      }
+
+      .predictable-content button {
+        padding: 10px;
+        background: white;
+      }
+
+      .predictable-content button:hover {
+        background-color: #f7fafc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="example-container poor">
+      <h2>Poor Predictability Example</h2>
+
+      <div class="unpredictable-menu">
+        <button class="menu-trigger">Click me</button>
+        <div class="menu-content">
+          <button>Option 1</button>
+          <button>Option 2</button>
+          <button>Option 3</button>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Why this is poor predictability:</strong>
+        <ul>
+          <li>No visual indicator that this is a dropdown menu</li>
+          <li>No hover states to show interactivity</li>
+          <li>Abrupt appearance/disappearance without animation</li>
+          <li>No clear indication of current state</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="example-container good">
+      <h2>Good Predictability Example</h2>
+
+      <div class="predictable-menu">
+        <button class="trigger">Menu (click to expand)</button>
+        <div class="predictable-content">
+          <button>Option 1</button>
+          <button>Option 2</button>
+          <button>Option 3</button>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Why this demonstrates good predictability:</strong>
+        <ul>
+          <li>Clear dropdown arrow indicating expandable content</li>
+          <li>Smooth animations for state changes</li>
+          <li>Hover states showing interactive elements</li>
+          <li>Consistent visual feedback</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Poor Predictability Example
+      document
+        .querySelector(".unpredictable-menu .menu-trigger")
+        .addEventListener("click", function () {
+          const content = this.nextElementSibling;
+          content.style.display =
+            content.style.display === "block" ? "none" : "block";
+        });
+
+      // Good Predictability Example
+      document
+        .querySelector(".predictable-menu .trigger")
+        .addEventListener("click", function () {
+          this.classList.toggle("active");
+          const content = this.nextElementSibling;
+          content.classList.toggle("active");
+        });
+    </script>
+  </body>
+</html>
