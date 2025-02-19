@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Step-by-Step Registration</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        line-height: 1.6;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+
+      .registration-good {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .step-indicator {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .step-indicator::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #ddd;
+        z-index: 1;
+      }
+
+      .step {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: white;
+        border: 2px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        position: relative;
+        z-index: 2;
+      }
+
+      .step.active {
+        border-color: #007bff;
+        background: #007bff;
+        color: white;
+      }
+
+      .step.completed {
+        border-color: #28a745;
+        background: #28a745;
+        color: white;
+      }
+
+      .step-content {
+        display: none;
+      }
+
+      .step-content.active {
+        display: block;
+      }
+
+      .form-good {
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-good label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .form-good input,
+      .form-good select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .form-good input:focus,
+      .form-good select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .btn-primary {
+        background: #007bff;
+        color: white;
+      }
+
+      .btn-secondary {
+        background: #6c757d;
+        color: white;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      p {
+        color: #666;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="registration-good">
+      <div class="step-indicator">
+        <div class="step active">1</div>
+        <div class="step">2</div>
+        <div class="step">3</div>
+        <div class="step">4</div>
+      </div>
+
+      <!-- Step 1: Basic Information -->
+      <div class="step-content active" id="step1">
+        <h2>Basic Information</h2>
+        <p>Let's start with your personal details</p>
+
+        <form class="form-good">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" />
+          </div>
+
+          <div class="button-group">
+            <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Account Security -->
+      <div class="step-content" id="step2">
+        <h2>Account Security</h2>
+        <p>Create your login credentials</p>
+
+        <form class="form-good">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="username" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" />
+          </div>
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword" />
+          </div>
+
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="prevStep(1)"
+            >
+              Back
+            </button>
+            <button type="button" class="btn btn-primary" onclick="nextStep(3)">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Address -->
+      <div class="step-content" id="step3">
+        <h2>Address Information</h2>
+        <p>Where can we reach you?</p>
+
+        <form class="form-good">
+          <div class="form-group">
+            <label>Street Address</label>
+            <input type="text" id="address" />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" id="city" />
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select id="country">
+              <option value="">Select a country</option>
+              <option value="us">United States</option>
+              <option value="ca">Canada</option>
+              <option value="uk">United Kingdom</option>
+            </select>
+          </div>
+
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="prevStep(2)"
+            >
+              Back
+            </button>
+            <button type="button" class="btn btn-primary" onclick="nextStep(4)">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 4: Preferences -->
+      <div class="step-content" id="step4">
+        <h2>Preferences</h2>
+        <p>Customize your experience</p>
+
+        <form class="form-good">
+          <div class="form-group">
+            <label>Language</label>
+            <select id="language">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Time Zone</label>
+            <select id="timezone">
+              <option value="">Select time zone</option>
+              <option value="pt">Pacific Time</option>
+              <option value="et">Eastern Time</option>
+              <option value="utc">UTC</option>
+            </select>
+          </div>
+
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="prevStep(3)"
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="submitForm()"
+            >
+              Complete Registration
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function nextStep(step) {
+        // Hide current step
+        document
+          .querySelector(".step-content.active")
+          .classList.remove("active");
+        // Show next step
+        document.querySelector(`#step${step}`).classList.add("active");
+
+        // Update step indicator
+        document.querySelectorAll(".step").forEach((el, index) => {
+          if (index + 1 < step) {
+            el.classList.add("completed");
+            el.classList.remove("active");
+          } else if (index + 1 === step) {
+            el.classList.add("active");
+            el.classList.remove("completed");
+          } else {
+            el.classList.remove("active", "completed");
+          }
+        });
+      }
+
+      function prevStep(step) {
+        // Hide current step
+        document
+          .querySelector(".step-content.active")
+          .classList.remove("active");
+        // Show previous step
+        document.querySelector(`#step${step}`).classList.add("active");
+
+        // Update step indicator
+        document.querySelectorAll(".step").forEach((el, index) => {
+          if (index + 1 < step) {
+            el.classList.add("completed");
+            el.classList.remove("active");
+          } else if (index + 1 === step) {
+            el.classList.add("active");
+            el.classList.remove("completed");
+          } else {
+            el.classList.remove("active", "completed");
+          }
+        });
+      }
+
+      function submitForm() {
+        // Here you would typically collect all the form data and submit it
+        alert("Registration completed successfully!");
+      }
+    </script>
+  </body>
+</html>
