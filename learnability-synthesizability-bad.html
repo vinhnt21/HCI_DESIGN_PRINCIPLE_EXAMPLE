@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poor Synthesizability Example</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        display: flex;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .app {
+        flex: 1;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .design-notes {
+        flex: 0 0 300px;
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        position: sticky;
+        top: 20px;
+        height: fit-content;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .design-notes h3 {
+        color: #333;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      .design-notes ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .design-notes li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .design-notes li::before {
+        content: "•";
+        color: #dc3545;
+        position: absolute;
+        left: 0;
+      }
+
+      /* Inconsistent course card styles */
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .course-card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        position: relative;
+      }
+
+      /* Different progress indicators */
+      .course-card:nth-child(1) .progress {
+        width: 100%;
+        height: 5px;
+        background: #eee;
+        margin-top: 10px;
+      }
+
+      .course-card:nth-child(1) .progress-bar {
+        width: 60%;
+        height: 100%;
+        background: #ff6b6b;
+      }
+
+      .course-card:nth-child(2) .progress {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: conic-gradient(#4834d4 216deg, #eee 0deg);
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      .course-card:nth-child(3) .progress {
+        font-size: 24px;
+        color: green;
+        text-align: right;
+      }
+
+      .course-card:nth-child(4) .progress {
+        display: flex;
+        gap: 5px;
+      }
+
+      .course-card:nth-child(4) .progress-dot {
+        width: 10px;
+        height: 10px;
+        background: #ddd;
+        border-radius: 50%;
+      }
+
+      .course-card:nth-child(4) .progress-dot.active {
+        background: #00ff00;
+      }
+
+      /* Inconsistent action buttons */
+      .action-button {
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      .course-card:nth-child(1) .action-button {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 20px;
+      }
+
+      .course-card:nth-child(2) .action-button {
+        background: none;
+        border: 2px solid #4834d4;
+        color: #4834d4;
+        padding: 10px;
+        width: 100%;
+      }
+
+      .course-card:nth-child(3) .action-button {
+        display: inline-block;
+        text-decoration: underline;
+        color: green;
+      }
+
+      .course-card:nth-child(4) .action-button {
+        background: linear-gradient(45deg, #00ff00, #00ffff);
+        border: none;
+        padding: 5px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          flex-direction: column;
+        }
+        .design-notes {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="app">
+        <div class="course-grid">
+          <div class="course-card">
+            <h3>Introduction to Web Design</h3>
+            <p>Learn the basics of web design</p>
+            <div class="progress">
+              <div class="progress-bar"></div>
+            </div>
+            <button class="action-button">Continue Course</button>
+          </div>
+
+          <div class="course-card">
+            <h3>JavaScript Fundamentals</h3>
+            <p>Master JavaScript basics</p>
+            <div class="progress"></div>
+            <button class="action-button">Resume Learning</button>
+          </div>
+
+          <div class="course-card">
+            <h3>Python Programming</h3>
+            <p>Learn Python from scratch</p>
+            <div class="progress">60% Complete</div>
+            <a href="#" class="action-button">Keep Going</a>
+          </div>
+
+          <div class="course-card">
+            <h3>UI/UX Design</h3>
+            <p>Design better user interfaces</p>
+            <div class="progress">
+              <span class="progress-dot active"></span>
+              <span class="progress-dot active"></span>
+              <span class="progress-dot active"></span>
+              <span class="progress-dot"></span>
+              <span class="progress-dot"></span>
+            </div>
+            <button class="action-button">→</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-notes">
+        <h3>Poor Synthesizability Issues</h3>
+        <ul>
+          <li>Inconsistent progress indicators across courses</li>
+          <li>Different button styles and labels for same action</li>
+          <li>Mixed metaphors for course progression</li>
+          <li>Varying interaction patterns</li>
+          <li>Inconsistent visual feedback</li>
+          <li>Different terminology for same concepts</li>
+          <li>Unpredictable navigation patterns</li>
+          <li>Inconsistent status representations</li>
+          <li>Mixed visual metaphors</li>
+          <li>Confusing mental models</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
